@@ -1,0 +1,9 @@
+LICENSE.md
+MANIFEST.in
+README.md
+setup.py
+openimis_be_productpackage.egg-info/PKG-INFO
+openimis_be_productpackage.egg-info/SOURCES.txt
+openimis_be_productpackage.egg-info/dependency_links.txt
+openimis_be_productpackage.egg-info/requires.txt
+openimis_be_productpackage.egg-info/top_level.txt
