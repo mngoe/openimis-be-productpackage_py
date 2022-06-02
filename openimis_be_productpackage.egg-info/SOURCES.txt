@@ -7,3 +7,11 @@ openimis_be_productpackage.egg-info/SOURCES.txt
 openimis_be_productpackage.egg-info/dependency_links.txt
 openimis_be_productpackage.egg-info/requires.txt
 openimis_be_productpackage.egg-info/top_level.txt
+productpackage/__init__.py
+productpackage/admin.py
+productpackage/apps.py
+productpackage/models.py
+productpackage/tests.py
+productpackage/urls.py
+productpackage/views.py
+productpackage/migrations/__init__.py
