@@ -6,6 +6,6 @@ from product import models as product_models
 class ProductPackage(product_models.Product):
     package = models.CharField(db_column="ProductPackage", max_length=100, blank=True, null=True)
 
-class Meta:
-    managed = False
-    db_table = "tblProduct"
+    class Meta:
+        managed = False
+        db_table = "tblProduct"
