@@ -20,12 +20,13 @@ This repository holds the files of the openIMIS Backend productpackage reference
    with content: urlpatterns = []
 
   - from /openimis-be_py/openIMIS: register your module in the pip requirements of openIMIS,
-    referencing your 'local' codebase: pip install -e ../../openimis-be-roductpackage_py/
+    referencing your 'local' codebase: pip install -e ../../openimis-be-productpackage_py/
 
   - register your module to openIMIS django site in /openimis-be_py/openimis.json
 
 
-- Without having an empty repository
-  follow the link : 
-  https://github.com/mngoe/openimis-be_py/tree/develop 
-  and at To create a new openIMIS module (e.g. openimis-be-mymodule) part
+# Migrate difficulties 
+If migration is not running smoothly : 
+- run this request "delete from django_migrations where app='productpackage'"
+- python manage.py migrate --run-syncdb
+- python manage.py makemigrations productpackage

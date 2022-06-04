@@ -4,7 +4,7 @@ Version: 0.1.0
 Summary: The openIMIS Backend Product Package reference module.
 Home-page: https://openimis.org/
 Author: Gaïus HEUMEN
-Author-email: laheumsmi44@yahoo.fr
+Author-email: g.heumen@ynote.africa
 License: GNU AGPL v3
 Classifier: Environment :: Web Environment
 Classifier: Framework :: Django
