@@ -8,7 +8,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='openimis-be-productpackage',
+    name='openimis_be_productpackage',
     version='0.1.0',
     packages=find_packages(),
     include_package_data=True,
@@ -17,7 +17,7 @@ setup(
     # long_description=README,
     url='https://openimis.org/',
     author='Gaïus HEUMEN',
-    author_email='laheumsmi44@yahoo.fr',
+    author_email='g.heumen@ynote.africa',
     install_requires=[
         'django',
         'django-db-signals',

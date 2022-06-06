@@ -15,5 +15,8 @@ productpackage/tests.py
 productpackage/urls.py
 productpackage/views.py
 productpackage/migrations/0001_initial.py
+<<<<<<< HEAD
 productpackage/migrations/0005_productpackage.py
+=======
+>>>>>>> 018e021582ace3d2e1941bc90f25c662d87faba8
 productpackage/migrations/__init__.py
