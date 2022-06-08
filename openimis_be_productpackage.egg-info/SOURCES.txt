@@ -14,5 +14,3 @@ productpackage/models.py
 productpackage/tests.py
 productpackage/urls.py
 productpackage/views.py
-productpackage/migrations/0001_initial.py
-productpackage/migrations/__init__.py
