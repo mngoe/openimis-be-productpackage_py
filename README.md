@@ -27,6 +27,7 @@ This repository holds the files of the openIMIS Backend productpackage reference
 
 # Migrate difficulties 
 If migration is not running smoothly : 
+- delete migrations folder in the module
 - run this request "delete from django_migrations where app='productpackage'"
 - python manage.py migrate --run-syncdb
 - python manage.py makemigrations productpackage
