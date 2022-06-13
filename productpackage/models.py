@@ -10,10 +10,10 @@ from medical import models as medical_models
 # Create your models here.
 class ProductPackage(models.Model):
     id = models.AutoField( primary_key=True)
-    PackageType = models.CharField(db_column="PackageType", max_length=20, blank=True, null=True)
-    PackageName = models.CharField(db_column="PackageName", max_length=100, blank=True, null=True)
-    PackageDate = models.DateTimeField(db_column="PackageDate", blank=True, null=True)
-    PackagePrice = models.DecimalField(db_column="PackagePrice", max_digits=18, decimal_places=2,  blank=True, null=True)
+    packageType = models.CharField(max_length=20, blank=True, null=True)
+    packageName = models.CharField(max_length=100, blank=True, null=True)
+    packageCreateDate = models.DateTimeField()
+    packagePrice = models.DecimalField(max_digits=18, decimal_places=2,  blank=True, null=True)
     PackageCheckBox = models.BooleanField(default= True)
 
     @classmethod
@@ -23,7 +23,7 @@ class ProductPackage(models.Model):
 
     class Meta:
         managed = True
-        db_table ='tblProducPackage'
+        db_table ='tblProductPackage'
 
     ### CRUD for Productpackage model
 
@@ -38,14 +38,14 @@ class ProductContainedPackage(models.Model):
     idPCP = models.AutoField( primary_key=True)
     productId = models.ForeignKey(product_models.Product, models.DO_NOTHING, db_column="ProductId")
     productpackageId = models.ForeignKey(productpackage_models.ProductPackage, models.DO_NOTHING, db_column="id")
-    PCPQuantity = models.IntegerField(db_column="PCPQuantity", blank=True, null=True)
-    PCPDate = models.DateTimeField(db_column="PackageDate", blank=True, null=True)
-    PCPPrice = models.DecimalField(db_column="PackagePrice", max_digits=18, decimal_places=2,  blank=True, null=True)
+    pCPQuantity = models.IntegerField( blank=True, null=True)
+    pCPCreateDate = models.DateTimeField(blank=True, null=True)
+    pCPPrice = models.DecimalField(max_digits=18, decimal_places=2,  blank=True, null=True)
 
 
     @classmethod
     def sum_quantityproduct(cls):
-        return cls.objects.all().aggregate(sum('PCPQuantity'))
+        return cls.objects.all().aggregate(sum('pCPQuantity'))
 
     @classmethod
     def delete_productcontainedpackagerow(cls, id_productrow ): #delete a row in ProductContainedPackage table
@@ -62,13 +62,13 @@ class ServiceContainedPackage(models.Model):
     idSCP = models.AutoField( primary_key=True)
     product_packageId = models.ForeignKey(productpackage_models.ProductPackage, models.DO_NOTHING, db_column="id")
     medical_serviceId = models.ForeignKey(medical_models.Service, models.DO_NOTHING, db_column="ServiceID")
-    SCPQuantity = models.IntegerField(db_column="PCPQuantity", blank=True, null=True)
-    SCPDate = models.DateTimeField(db_column="PackageDate", blank=True, null=True)
-    SCPPrice = models.DecimalField(db_column="PackagePrice", max_digits=18, decimal_places=2, blank=True, null=True)
+    sCPQuantity = models.IntegerField()
+    sCPCreateDate = models.DateTimeField()
+    sCPPrice = models.DecimalField(max_digits=18, decimal_places=2)
 
     @classmethod
     def sum_quantityservice(cls):  # this fucntion returns the sum of the values of the entries of SCPQuantity field
-        return cls.objects.all().aggregate(sum('SCPQuantity'))
+        return cls.objects.all().aggregate(sum('sCPQuantity'))
 
     @classmethod
     def delete_servicecontainedpackagerow(cls, id_servicerow):  # delete a row in ServiceContainedPackage table
