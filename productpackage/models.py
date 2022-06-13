@@ -12,13 +12,15 @@ from product.models import Product
 class ProductPackage(models.Model):
     """ class representing the package """
 
-    ID = models.AutoField(db_column="PackageID", primary_key=True)
-    PackageType = models.CharField(db_column="PackageType", max_length=20, blank=True, null=True)
-    PackageName = models.CharField(db_column="PackageName", max_length=100, blank=True, null=True)
+    IdPackage = models.AutoField(db_column="PackageID", primary_key=True)
+    PackageType = models.CharField(db_column="PackageType",
+                                   max_length=20, blank=True, null=True)
+    PackageName = models.CharField(db_column="PackageName",
+                                   max_length=100, blank=True, null=True)
     PackageDate = models.DateTimeField(db_column="PackageDate",
-                                       blank=True, null=True)
+                                                blank=True, null=True)
     PackagePrice = models.DecimalField(db_column="PackagePrice",
-                                       max_digits=18, decimal_places=2, blank=True, null=True)
+                max_digits=18, decimal_places=2, blank=True, null=True)
     PackageCheckBox = models.BooleanField(default=True)
 
     @classmethod
@@ -45,7 +47,7 @@ class ProductContainedPackage(models.Model):
     PCPDate = models.DateTimeField(db_column="PackageDate",
                                    blank=True, null=True)
     PCPPrice = models.DecimalField(db_column="PackagePrice",
-                                   max_digits=18, decimal_places=2, blank=True, null=True)
+                max_digits=18, decimal_places=2, blank=True, null=True)
 
     @classmethod
     def sum_quantityproduct(cls):
@@ -53,7 +55,7 @@ class ProductContainedPackage(models.Model):
         return cls.objects.all().aggregate(sum('PCPQuantity'))
 
     @classmethod
-    def delete_productcontainedpackagerow(cls, id_productrow):
+    def delete_productcontainedpackrow(cls, id_productrow):
         """ delete a row in ProductContainedPackage table """
         cls.objects.find(idPCP=id_productrow).delete()
 
@@ -69,17 +71,18 @@ class ServiceContainedPackage(models.Model):
     product_packageId = models.ForeignKey(ProductPackage,
                                           models.DO_NOTHING, db_column="id")
     medical_serviceId = models.ForeignKey(medical_models.Service,
-                                          models.DO_NOTHING, db_column="ServiceID")
+                                models.DO_NOTHING, db_column="ServiceID")
     SCPQuantity = models.IntegerField(db_column="PCPQuantity",
                                       blank=True, null=True)
     SCPDate = models.DateTimeField(db_column="PackageDate",
                                    blank=True, null=True)
     SCPPrice = models.DecimalField(db_column="PackagePrice",
-                                   max_digits=18, decimal_places=2, blank=True, null=True)
+                max_digits=18, decimal_places=2, blank=True, null=True)
 
     @classmethod
     def sum_quantityservice(cls):
-        """ this fucntion returns the sum of the values of the entries of SCPQuantity field """
+        """ this fucntion returns the sum
+        of the values of the entries of SCPQuantity field """
         return cls.objects.all().aggregate(sum('SCPQuantity'))
 
     @classmethod
@@ -88,7 +91,7 @@ class ServiceContainedPackage(models.Model):
         try:
             cls.objects.find(idSCP=id_servicerow).delete()
         except cls.DoesNotExist:
-            print('Service  with id "%f" does not exist.' % id_servicerow)
+            print(f"Service  with id {id_servicerow} does not exist.")
 
     class Meta:
         managed = True
@@ -96,7 +99,8 @@ class ServiceContainedPackage(models.Model):
 
 
 def sum_quantity_productservice():
-    """ fucntion that counts the number of entries from the table product and table services """
+    """ fucntion that counts the number of entries
+    from the table product and table services """
     return sum(Product.objects.filter(db_column="ProdID").count(),
                medical_models.Service.
                objects.filter(db_column="ServiceID").count())
@@ -107,4 +111,4 @@ def delete_productrow(id_productrow):
     try:
         Product.objects.find(id=id_productrow).delete()
     except Product.DoesNotExist:
-        print('Product  with id "%f" does not exist.' % id_productrow)
+        print(f"Product  with id {id_productrow} does not exist.")
