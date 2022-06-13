@@ -30,6 +30,7 @@ class ProductPackage(models.Model):
         cls.objects.find(idSCP=id_productpackagerow).delete()
 
     class Meta:
+        """ class Meta """
         managed = True
         db_table = 'tblProducPackage'
 
