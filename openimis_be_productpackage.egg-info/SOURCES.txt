@@ -13,4 +13,14 @@ productpackage/apps.py
 productpackage/models.py
 productpackage/tests.py
 productpackage/urls.py
+<<<<<<< HEAD
 productpackage/views.py
+productpackage/migrations/0001_initial.py
+<<<<<<< HEAD
+productpackage/migrations/0005_productpackage.py
+=======
+>>>>>>> 018e021582ace3d2e1941bc90f25c662d87faba8
+productpackage/migrations/__init__.py
+=======
+productpackage/views.py
+>>>>>>> 7b386237a1bb88bb8d893b7ee04c14b02299510f
