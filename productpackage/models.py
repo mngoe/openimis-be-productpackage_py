@@ -18,9 +18,9 @@ class ProductPackage(models.Model):
     PackageName = models.CharField(db_column="PackageName",
                                    max_length=100, blank=True, null=True)
     PackageDate = models.DateTimeField(db_column="PackageDate",
-                                                blank=True, null=True)
+                                       blank=True, null=True)
     PackagePrice = models.DecimalField(db_column="PackagePrice",
-                max_digits=18, decimal_places=2, blank=True, null=True)
+                                       max_digits=18, decimal_places=2, blank=True, null=True)
     PackageCheckBox = models.BooleanField(default=True)
 
     @classmethod
@@ -30,6 +30,7 @@ class ProductPackage(models.Model):
         cls.objects.find(idSCP=id_productpackagerow).delete()
 
     class Meta:
+        """ class Meta """
         managed = True
         db_table = 'tblProducPackage'
 
@@ -47,7 +48,7 @@ class ProductContainedPackage(models.Model):
     PCPDate = models.DateTimeField(db_column="PackageDate",
                                    blank=True, null=True)
     PCPPrice = models.DecimalField(db_column="PackagePrice",
-                max_digits=18, decimal_places=2, blank=True, null=True)
+                                   max_digits=18, decimal_places=2, blank=True, null=True)
 
     @classmethod
     def sum_quantityproduct(cls):
@@ -71,13 +72,13 @@ class ServiceContainedPackage(models.Model):
     product_packageId = models.ForeignKey(ProductPackage,
                                           models.DO_NOTHING, db_column="id")
     medical_serviceId = models.ForeignKey(medical_models.Service,
-                                models.DO_NOTHING, db_column="ServiceID")
+                                          models.DO_NOTHING, db_column="ServiceID")
     SCPQuantity = models.IntegerField(db_column="PCPQuantity",
                                       blank=True, null=True)
     SCPDate = models.DateTimeField(db_column="PackageDate",
                                    blank=True, null=True)
     SCPPrice = models.DecimalField(db_column="PackagePrice",
-                max_digits=18, decimal_places=2, blank=True, null=True)
+                                   max_digits=18, decimal_places=2, blank=True, null=True)
 
     @classmethod
     def sum_quantityservice(cls):
